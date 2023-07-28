@@ -1,7 +1,6 @@
 import { type NextPage } from "next"
 import { NewTweetForm } from "../components/NewTweetForm"
 import { InfiniteTweets } from "../components/InfiniteTweets"
-import { Tweet } from "@prisma/client"
 import { api } from "~/utils/api"
 
 const Home: NextPage = () => {
