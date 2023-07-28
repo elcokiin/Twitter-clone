@@ -47,8 +47,8 @@ function Form() {
                     likeByMe: false,
                     user: {
                         id: session.data.user.id,
-                        name: session.data.user.name,
-                        image: session.data.user.image,
+                        name: session.data.user.name || null,
+                        image: session.data.user.image || null,
                     }
                 }
                 return {

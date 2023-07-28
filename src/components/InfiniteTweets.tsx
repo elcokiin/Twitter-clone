@@ -8,12 +8,12 @@ import { IconHoverEffect } from "./IconHoverEffect"
 import { api } from "~/utils/api"
 
 type Tweet = {
-    id: String;
-    content: String;
+    id: string;
+    content: string;
     createdAt: Date;
-    likeCount: Number;
-    likedByMe: Boolean;
-    user: { id: String, name: String | null, image: String | null};
+    likeCount: number;
+    likedByMe: boolean;
+    user: { id: string, name: string | null, image: string | null};
 }
 
 type InfiniteTweetsProps = {
@@ -41,7 +41,7 @@ export const InfiniteTweets = ({ isLoading, isError, hasMore, fetchNewTweets, tw
                 loader={<h4>Loading...</h4>}
             >
                 {tweets.map(tweet => (
-                    <TweetCard key={tweet.id as string} {...tweet} />
+                    <TweetCard key={tweet.id} {...tweet} />
                 ))}
             </InfiniteScroll>
         </ul>
@@ -53,8 +53,8 @@ const dateTimeFormatter = new Intl.DateTimeFormat(undefined, { dateStyle: "short
 type HeartButtonProps = {
     onClick: () => void
     isLoading: boolean
-    likedByMe: Boolean
-    likeCount: Number
+    likedByMe: boolean
+    likeCount: number
 }
 
 
@@ -65,7 +65,7 @@ function HeartButton({ likedByMe, likeCount, isLoading, onClick }: HeartButtonPr
     if(session.status !== "authenticated") {
         return <div className="mb-1 mt-1 flex items-center gap-3 self-start text-gray-500">
             <HeartIcon className="text-red-500" />
-            <span>{likeCount as number}</span>
+            <span>{likeCount}</span>
         </div>
     }
 
@@ -78,7 +78,7 @@ function HeartButton({ likedByMe, likeCount, isLoading, onClick }: HeartButtonPr
 
             <IconHoverEffect red>
                 <HeartIcon className={`transition-colors duration-200 ${likedByMe ? "fill-red-500" : "fill-gray-500 group-hover:fill-red-500 group-focus-visible:fill-red-500"}`} />
-                <span>{likeCount as number}</span>
+                <span>{likeCount}</span>
             </IconHoverEffect>
 
         </button>
@@ -117,13 +117,13 @@ function TweetCard({id, user, content, createdAt, likeCount, likedByMe}: Tweet) 
     })
 
     function handleToggleLike() {
-        toggleLike.mutate( { id: id as string } )
+        toggleLike.mutate( { id } )
     }
 
     return (
         <li className="flex gap-4 border-b p-4">
             <Link href={`/profile/${id}`}>
-                <ProfileImage src={user.image as string}/>
+                <ProfileImage src={user.image}/>
             </Link>
             <div className="flex flex-grow flex-col">
                 <div className="flex-gap-1">
